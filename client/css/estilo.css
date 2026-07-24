@@ -23,15 +23,126 @@ label {
     color: #333333
 }
             /* Estilo dos campos de digitação e seleção */
-input[type="text"], input[type="date"], select {
+input[type="text"], select {
     width: 100%;
     padding: 12px;
-    margin-top: 6px;
+
     border: 1px solid #cccccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 16px;
+
+    font-size: 15px;
+    background-color: #fff;
 }
+
+#carrinho-epis {
+
+
+    border: 1px dashed #b0b0b0;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 6px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.carrinho-vazio {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.item-carrinho:last-child {
+    margin-bottom: 0;
+}
+
+.nome-item-carrinho {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    max-width: 65%;
+
+
+    word-break: break-word;
+}
+
+.controles-quantidade {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-qtd {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    color: #333;
+    width: 28px;
+    height: 28px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-qtd:hover {
+    background-color: #d0d0d0;
+}
+
+.qtd-valor {
+    font-weight: bold;
+
+    font-size: 14px;
+    min-width: 18px;
+    text-align: center;
+}
+
+
+
+
+
+.btn-remover-item {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+    padding: 0;
+}
+
+
+
+.btn-remover-item:hover {
+    background-color: #cc0000;
+
+}
+
+
             /* Linha completa para adicionar a barra de rolagem horizontal*/
 #Lista-epis {
     overflow-x:auto;

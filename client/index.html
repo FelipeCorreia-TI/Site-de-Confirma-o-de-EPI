@@ -22,102 +22,27 @@
                 <input type="text" id="nome-funcionario" required placeholder="Ex: Matheus Cavalcante Sampaio">
 
                 <label for="base-operacional">Qual a sua base operacional?</label>
-                <input type="text" id="base-operacional" required placeholder="Ex: Base Piracicaba, Sumaré, Americana ou LT Piracicaba.">
-
-                <label for="data-retirada">Data da Retirada:</label>
-                <input type="date" id="data-retirada" required>
-
-                <label for="Lista-epis">Equipamento Retirado (Segure Ctrl para selecionar mais de um):</label>
-
-                <input type="text" id="busca-epi" placeholder="Pesquisar EPI..." style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-
-                <select id="Lista-epis" required multiple size="4">
-                    <option value="avental">Avental PVC</option>
-                    <option value="balaclava">Balaclava tam M</option>
-                    <option value="balaclava">Balaclava tam G</option>
-                    <option value="bandeirola">Bandeirola para escada</option>
-                    <option value="bolsacapacete">Bolsa de Capacete</option>
-                    <option value="balde">Balde de lona</option>
-                    <option value="bolsalona">Bolsa de lona para acondicionamento luvas isolantes </option>
-                    <option value="bolsaepi">BOLSA P/ TRANSPORTE DE EPI</option>
-                    <option value="bolsafacial">BOLSA P / PROT FACIAL</option>
-                    <option value="bolsavara">BOLSA P/ TRANSPORTE DE VARA DE MANOBRA </option>
-                    <option value="bone">Boné</option>
-                    <option value="Bota">BOTA DE SEGURANÇA CANO ALTO COM ZIPER, VELCRO E MEMBRANA IMPERMEAVEL tam 40</option>
-                    <option value="Bota">BOTA DE SEGURANÇA CANO ALTO COM ZIPER, VELCRO E MEMBRANA IMPERMEAVEL tam 41</option>
-                    <option value="Bota">BOTA DE SEGURANÇA CANO ALTO COM ZIPER, VELCRO E MEMBRANA IMPERMEAVEL tam 42</option>
-                    <option value="Botina">BOTINA DE SEGURANÇA tam 39</option>
-                    <option value="Botina">BOTINA DE SEGURANÇA tam 40</option>
-                    <option value="Botina">BOTINA DE SEGURANÇA tam 41</option>
-                    <option value="Botina">BOTINA DE SEGURANÇA tam 42</option>
-                    <option value="Botina">BOTINA DE SEGURANÇA tam 43</option>
-                    <option value="Botina">BOTINA DE SEGURANÇA tam 45</option>
-                    <option value="facão">Banha de facão</option>
-                    <option value="cabeçote">CABEÇOTE UNIVERSAL PARA MANOBRA</option>
-                    <option value="Calça">CALÇA FR tam P</option>
-                    <option value="Calça">CALÇA FR tam M</option>
-                    <option value="Calça">CALÇA FR tam G</option>
-                    <option value="Calça">CALÇA FR tam GG</option>
-                    <option value="Calça">CALÇA FR tam EGG</option>
-                    <option value="calçamotosserista">CALÇA PARA MOTOSSERISTA tam 44</option>
-                    <option value="calçamotossera">Calça de proteção para operador de motosserra tam 42</option>
-                    <option value="calçamotossera">Calça de proteção para operador de motosserra tam 44</option>
-                    <option value="calçamotossera">Calça de proteção para operador de motosserra tam 46</option>
-                    <option value="calçaimpermeavel">CALÇA IMPERMEAVEL FR tam GG</option>
-                    <option value="calçaimpermeavel">CALÇA IMPERMEAVEL FR tam EG</option>
-                    <option value="Camiseta">CamisetaFR tam P</option>
-                    <option value="Camiseta">CamisetaFR tam M</option>
-                    <option value="Camiseta">CamisetaFR tam G</option>
-                    <option value="Camisetadeslocamento">CAMISETA DE DESLOCAMENTO M.CURTA tam P</option>
-                    <option value="Camisetadeslocamento">CAMISETA DE DESLOCAMENTO M.CURTA tam M</option>
-                    <option value="Camisetadeslocamento">CAMISETA DE DESLOCAMENTO M.CURTA tam G</option>
-                    <option value="Camisetadeslocamento">CAMISETA DE DESLOCAMENTO M.CURTA tam GG</option>
-                    <option value="Camisetadeslocamento">CAMISETA DE DESLOCAMENTO M.CURTA tam EG</option>
-                    <option value="Camisetadeslocamentolonga">CAMISETA DE DESLOCAMENTO M.LONGA tam PP</option>
-                    <option value="Camisetadeslocamentolonga">CAMISETA DE DESLOCAMENTO M.LONGA tam P</option>
-                    <option value="Camisamotosserista">Camisa para motosserista tam P</option>
-                    <option value="Capacete">Capacete</option>
-                    <option value="cinto">CINTO OPERACIONAL tam G</option>
-                    <option value="cinto">CINTO OPERACIONAL tam U</option>
-                    <option value="Jaqueta">JAQUETA FR tam P</option>
-                    <option value="Jaqueta">JAQUETA FR tam G</option>
-                    <option value="Jaqueta">JAQUETA FR tam GG</option>
-                    <option value="Jaquetaimpermeavel">JAQUETA IMPERMEAVEL FR tam G</option>
-                    <option value="Jaquetaimpermeavel">JAQUETA IMPERMEAVEL FR tam GG</option>
-                    <option value="kitparaquedas">KIT CINTURÃO PARAQUEDISTA, TALABARTE DE POSICIONAMENTO E TRAVA QUEDAS  LEAL tam 1</option>
-                    <option value="kitparaquedas">KIT CINTURÃO PARAQUEDISTA, TALABARTE DE POSICIONAMENTO E TRAVA QUEDAS  LEAL tam 2</option>
-                    <option value="luvadeproteçao">LUVA DE PROTEÇÃO PARA LUVA DE BORRACHA ISOLANTE tam M</option>
-                    <option value="luvadeproteçao">LUVA DE PROTEÇÃO PARA LUVA DE BORRACHA ISOLANTE tam G</option>
-                    <option value="luvadevaqueta">LUVA DE VAQUETA tam P</option>
-                    <option value="luvadevaqueta">LUVA DE VAQUETA tam M</option>
-                    <option value="luvadevaqueta">LUVA DE VAQUETA tam G</option>
-                    <option value="luvaisolante">LUVA ISOLANTE DE BORRACHA CLASSE "0'' tam 10</option>
-                    <option value="luvaisolante">LUVA ISOLANTE DE BORRACHA CLASSE "2'' tam 8</option>
-                    <option value="luvanitrica">LUVA NITRILICA tam XG</option>
-                    <option value="luvanitrica">LUVA NITRILICA tam G</option>
-                    <option value="luvamotosserista">LUVA PARA MOTOSERRISTA 5 DEDOS tam P</option>
-                    <option value="luvamotosserista">LUVA PARA MOTOSERRISTA 5 DEDOS tam M</option>
-                    <option value="luvamotosserista">LUVA PARA MOTOSERRISTA 5 DEDOS tam G</option>
-                    <option value="luvakevlar">LUVAS DE KEVLAR MULTI TATO  tam 8</option>
-                    <option value="luvakevlar">Luvas FR kevlar com palma emborrachada tam 9</option>
-                    <option value="mosquetao">MOSQUETÃO OVAL TRIPLA TRAVA</option>
-                    <option value="oculoscinza">OCULOS LENTES CINZA</option>
-                    <option value="oculosverde">OCULOS LENTES VERDES G15</option>
-                    <option value="Abafador">Protetor Auricular (Abafador)</option>
-                    <option value="protetorfacial">PROTETOR FACIAL</option>
-                    <option value="protetorsolar">PROTETOR SOLAR CORPORAL</option>
-                    <option value="protetorlabial">PROTETOR SOLAR LABIAL</option>
-                    <option value="sacola">SACOLA IMPERMEAVEL</option>
-                    <option value="TALABARTE">TALABARTE  CESTE AEREO 1,65m</option>
-                    <option value="TALABARTE">TALABARTE DE POSICIONAMENTO </option>
-                    <option value="TALABARTE">TALABARTE TIPO "Y"</option>
-                    <option value="protetortalabarte">Protetor em borracha para Talabarte corda com velcro 70cm</option>
-                    <option value="sujidade">VESTIMENTA DE SUJIDADE tam M</option>
-                    <option value="sujidade">VESTIMENTA DE SUJIDADE tam GG</option>
+                <select id="base-operacional" required>
+                    <option value="">Selecione uma base operacional...</option>
+                    <option value="Base Piracicaba">Base Piracicaba</option>
+                    <option value="Base Sumaré">Base Sumaré</option>
+                    <option value="Base Americana">Base Americana</option>
+                    <option value="LT Piracicaba">LT Piracicaba</option>
                 </select>
 
-                <label for ="quantidade-epi">Quantidade Retirada:</label>
-                <input type="number" id="quantidade-epi" min="1" max="100" value="1" required>
+
+                <label for="busca-epi">Adicionar Equipamento ao Carrinho:</label>
+                <input type="text" id="busca-epi" placeholder="Pesquisar EPI..." style="width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+                
+                <select id="Lista-epis">
+                    <option value="">Carregando equipamentos...</option>
+                </select>
+
+                <label>EPIs Selecionados no Carrinho:</label>
+                <div id="carrinho-epis">
+                    <p class="carrinho-vazio">Nenhum equipamento adicionado.</p>
+                </div>
 
                 <label>Assine na área abaixo:</label>
                 <canvas id="quadrado-assinatura" width="400" height="150"></canvas>
