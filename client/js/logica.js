@@ -77,16 +77,14 @@ async function carregarEstoque() {
         selectEpi.innerHTML = '<option value="">Selecione um EPI para adicionar...</option>';
         
         inventario.forEach(item => {
-
-            const limiteRetirada = item.quantidadePadrao !== undefined 
-                ? item.quantidadePadrao 
-                : (item.quantidade || 1);
+            const estoqueDisponivel = item.quantidade !== undefined ? item.quantidade : 0;
+            const limiteRetirada = item.quantidadePadrao !== undefined ? item.quantidadePadrao : estoqueDisponivel;
 
             selectEpi.innerHTML += `
                 <option value="${item.id}" 
                         data-nome="${item.nome}" 
                         data-limite="${limiteRetirada}">
-                    ${item.nome} (Estoque: ${item.quantidade || 0})
+                    ${item.nome} (Estoque: ${estoqueDisponivel})
                 </option>
             `;
         });
