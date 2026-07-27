@@ -70,26 +70,26 @@ botãoLimpar.addEventListener("click", limparTela);
 async function carregarEstoque() {
     try {
         const resposta = await fetch(`${API_URL}/estoque`);
-        if (!resposta.ok) throw new Error("Erro ao carregar estoque.");
-
         const inventario = await resposta.json();
         
+        // Garante que limpa o select antes de popular
         selectEpi.innerHTML = '<option value="">Selecione um EPI para adicionar...</option>';
         
         inventario.forEach(item => {
-            const estoqueDisponivel = item.quantidade !== undefined ? item.quantidade : 0;
-            const limiteRetirada = item.quantidadePadrao !== undefined ? item.quantidadePadrao : estoqueDisponivel;
+            // Pegando a 'quantidade' e 'quantidadePadrao' diretamente do JSON
+            const qtdEstoque = item.quantidade;
+            const limite = item.quantidadePadrao;
 
             selectEpi.innerHTML += `
                 <option value="${item.id}" 
                         data-nome="${item.nome}" 
-                        data-limite="${limiteRetirada}">
-                    ${item.nome} (Estoque: ${estoqueDisponivel})
+                        data-limite="${limite}">
+                    ${item.nome} (Estoque: ${qtdEstoque})
                 </option>
             `;
         });
     } catch (erro) {
-        console.warn("Não foi possível carregar o estoque do Firebase em tempo real.", erro);
+        console.error("Erro ao carregar o estoque:", erro);
     }
 }
 
