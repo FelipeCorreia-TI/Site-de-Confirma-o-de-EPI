@@ -77,14 +77,21 @@ async function carregarEstoque() {
         selectEpi.innerHTML = '<option value="">Selecione um EPI para adicionar...</option>';
         
         inventario.forEach(item => {
+
+            const limiteRetirada = item.quantidadePadrao !== undefined 
+                ? item.quantidadePadrao 
+                : (item.quantidade || 1);
+
             selectEpi.innerHTML += `
-                <option value="${item.id}" data-nome="${item.nome}" data-limite="${item.limiteMax || 1}">
+                <option value="${item.id}" 
+                        data-nome="${item.nome}" 
+                        data-limite="${limiteRetirada}">
                     ${item.nome} (Estoque: ${item.quantidade || 0})
                 </option>
             `;
         });
     } catch (erro) {
-        console.warn("Não foi possível carregar o estoque do Firebase em tempo real. Usando opções locais.", erro);
+        console.warn("Não foi possível carregar o estoque do Firebase em tempo real.", erro);
     }
 }
 
