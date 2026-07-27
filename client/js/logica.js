@@ -70,21 +70,30 @@ botãoLimpar.addEventListener("click", limparTela);
 async function carregarEstoque() {
     try {
         const resposta = await fetch(`${API_URL}/estoque`);
+        if (!resposta.ok) throw new Error("Erro ao carregar estoque.");
+
         const inventario = await resposta.json();
-        
-        // Garante que limpa o select antes de popular
+
+        // ORDENAÇÃO ALFABÉTICA (A - Z):
+        // Usamos localeCompare para tratar corretamente acentos e caracteres especiais
+        inventario.sort((a, b) => {
+            const nomeA = a.nome || "";
+            const nomeB = b.nome || "";
+            return nomeA.localeCompare(nomeB, 'pt-BR', { sensitivity: 'base' });
+        });
+
+
         selectEpi.innerHTML = '<option value="">Selecione um EPI para adicionar...</option>';
-        
+
         inventario.forEach(item => {
-            // Pegando a 'quantidade' e 'quantidadePadrao' diretamente do JSON
-            const qtdEstoque = item.quantidade;
-            const limite = item.quantidadePadrao;
+            const estoqueReal = item.quantidade ?? item["quantidade "] ?? item.quantidadeEstoque ?? 0;
+            const limite = item.quantidadePadrao ?? item["quantidadePadrao "] ?? estoqueReal;
 
             selectEpi.innerHTML += `
                 <option value="${item.id}" 
                         data-nome="${item.nome}" 
                         data-limite="${limite}">
-                    ${item.nome} (Estoque: ${qtdEstoque})
+                    ${item.nome} (Estoque: ${estoqueReal})
                 </option>
             `;
         });
