@@ -75,13 +75,11 @@ async function carregarEstoque() {
         const inventario = await resposta.json();
 
         // ORDENAÇÃO ALFABÉTICA (A - Z):
-        // Usamos localeCompare para tratar corretamente acentos e caracteres especiais
         inventario.sort((a, b) => {
             const nomeA = a.nome || "";
             const nomeB = b.nome || "";
             return nomeA.localeCompare(nomeB, 'pt-BR', { sensitivity: 'base' });
         });
-
 
         selectEpi.innerHTML = '<option value="">Selecione um EPI para adicionar...</option>';
 
@@ -203,6 +201,7 @@ async function enviarFormulario(evento) {
         return;
     }
 
+    const btnEnviar = document.getElementById("botão-enviar");
     const nome = document.getElementById("nome-funcionario").value;
     const baseoperacional = document.getElementById("base-operacional").value;
     const imagemAssinatura = canvas.toDataURL();
@@ -211,11 +210,17 @@ async function enviarFormulario(evento) {
     const dadosEnvio = {
         nome,
         baseOperacional: baseoperacional,
-        itens: carrinho, // Array de objetos { id, nome, quantidade }
+        itens: carrinho,
         assinatura: imagemAssinatura
     };
 
     try {
+        // Bloqueia botão enquanto envia
+        if (btnEnviar) {
+            btnEnviar.disabled = true;
+            btnEnviar.innerText = "Processando...";
+        }
+
         const resposta = await fetch(`${API_URL}/entrega`, {
             method: "POST",
             headers: {
@@ -224,21 +229,32 @@ async function enviarFormulario(evento) {
             body: JSON.stringify(dadosEnvio)
         });
 
-        if (!resposta.ok) {
-            throw new Error("Erro ao registrar a retirada no servidor.");
+        const resultado = await resposta.json();
+
+        if (!resposta.ok || !resultado.sucesso) {
+            throw new Error(resultado.erro || "Erro ao registrar a retirada no servidor.");
         }
 
         alert("Retirada registrada com sucesso!");
 
-        // Limpeza e reset
+        // Limpeza e reset da tela
         formulario.reset();
         carrinho = [];
         renderizarCarrinho();
         limparTela();
 
+        // Atualiza a lista do estoque imediatamente com os novos saldos
+        await carregarEstoque();
+
     } catch (erro) {
-        console.error(erro);
-        alert("Erro ao enviar a retirada. Verifique a conexão.");
+        console.error("Erro na confirmação:", erro);
+        alert(`Atenção: ${erro.message}`);
+    } finally {
+        // Libera o botão novamente
+        if (btnEnviar) {
+            btnEnviar.disabled = false;
+            btnEnviar.innerText = "Confirmar Retirada";
+        }
     }
 }
 
