@@ -6,17 +6,6 @@ body {
     padding: 20px;
 }
 
-select#selectEpi, 
-.seu-select-class {
-    width: 100%;            
-    max-width: 100%;         
-    box-sizing: border-box;  
-    white-space: nowrap;     
-    overflow: hidden;        
-    text-overflow: ellipsis; 
-    font-size: 14px;         
-    padding: 8px 12px;
-}
             /* Estilo da caixinha que segura o formulário */
 #caixa-principal {
     max-width: 450px;
