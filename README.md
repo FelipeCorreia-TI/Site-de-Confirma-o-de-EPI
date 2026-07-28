@@ -1,289 +1,111 @@
-# Controle de Retirada de EPI
+# 🛡️ Sistema de Controle de Retirada de EPI - Front-end
 
-Sistema web desenvolvido para realizar o controle de retirada de Equipamentos de Proteção Individual (EPIs) de forma simples, rápida e intuitiva.
 
-O sistema permite registrar o nome do funcionário, selecionar um ou mais equipamentos, informar a quantidade retirada e realizar uma assinatura digital antes da confirmação da entrega.
+Este repositório contém a aplicação **Front-end** do sistema de **Controle de Retirada de Equipamentos de Proteção Individual (EPI)** desenvolvido para a **CPFL Energia**. O projeto digitaliza o processo de requisição, controle de saldo de estoque no almoxarifado operacional e coleta de assinatura digital do colaborador.
 
-**Desenvolvedor:** MatheusCSampaio
 
----
-
-# Funcionalidades
-
-- Cadastro do nome do funcionário;
-- Seleção de múltiplos EPIs;
-- Registro da quantidade retirada;
-- Assinatura digital utilizando Canvas;
-- Limpeza da assinatura;
-- Confirmação da retirada;
-- Compatível com computadores, tablets e smartphones;
-- Preparado para funcionamento como Progressive Web App (PWA).
+[![Acessar o Aplicativo](https://img.shields.io/badge/ACESSAR_O_APLICATIVO-007acc?style=for-the-badge)](https://matheuscsampaio.github.io/Site-de-Confirma-o-de-EPI/client/)
+[![Repositório Back-end](https://img.shields.io/badge/Reposit%C3%B3rio--back--end-28a745?style=for-the-badge&)](https://github.com/FelipeCorreia-TI/API-Site-de-Confirma-o-de-EPI.git)
 
 ---
 
-# Tecnologias Utilizadas
+## 👨‍💻 Desenvolvedores
 
-- HTML5
-- CSS3
-- JavaScript
-- Canvas API
-- Service Worker
-- Web App Manifest
+* **Matheus Cavalcante Sampaio** - [@MatheusCSampaio](https://github.com/MatheusCSampaio)
+* **Felipe Correia** - [@FelipeCorreia-TI](https://github.com/FelipeCorreia-TI)
 
 ---
 
-# Estrutura do Projeto
+## 🚀 Tecnologias Utilizadas
+
+A aplicação foi desenvolvida com foco em leveza, responsividade e usabilidade direta em dispositivos móveis e desktops no ambiente de almoxarifado:
+
+- **HTML5**: Estruturação semântica, formulários de requisição e elemento `<canvas>` para captura de assinatura touchscreen/mouse.
+- **CSS3**: Estilização moderna e responsiva (`css/estilo.css`), padronizada com a identidade visual da CPFL Energia.
+- **JavaScript (ES6+)**: Consumo assíncrono de APIs REST via `fetch`, manipulação dinâmica do DOM, gestão do carrinho de EPIs e controle do Canvas.
+- **PWA (Progressive Web App)**: Configuração via `manifest.json` permitindo a instalação do sistema como aplicativo web nativo em dispositivos móveis.
+
+---
+
+## 📦 Funcionalidades do Front-end
+
+1. **Identificação e Validação do Colaborador**
+   - Preenchimento obrigatório do nome completo do funcionário.
+   - Seleção da Base Operacional (ex: *Base Piracicaba, LT Piracicaba, ST Piracicaba, etc.*).
+
+2. **Seleção de EPIs com Estoque Dinâmico**
+   - Carregamento em tempo real do catálogo e saldo disponível via integração com a API backend (`/estoque`).
+   - Campo de busca instantânea para filtragem rápida de equipamentos.
+   - Adição de itens ao carrinho com validação automática da quantidade máxima disponível em estoque.
+
+3. **Gerenciamento do Carrinho**
+   - Visualização interativa dos itens selecionados com ajuste dinâmico de quantidade e remoção.
+
+4. **Coleta de Assinatura Digital**
+   - Painel interativo (`<canvas>`) para assinatura do funcionário no ato da retirada.
+   - Conversão e otimização automática da assinatura para imagem no formato Base64.
+   - Recursos para limpar e refazer a assinatura na tela.
+
+5. **Envio e Feedback ao Usuário**
+   - Bloqueio temporário do botão de envio durante a requisição para evitar duplicidade de chamadas.
+   - Tratamento de respostas do servidor e exibição de alertas.
+   - Atualização automática do estoque na tela imediatamente após a confirmação da retirada.
+
+---
+
+## 📁 Estrutura de Pastas e Arquivos
 
 ```text
-Controle-Retirada-EPI/
-│
-├── index.html
-├── estilo.css
-├── logica.js
-├── manifest.json
-├── sw.js
-└── README.md
-```
-
-| Arquivo | Descrição |
-|----------|-----------|
-| `index.html` | Estrutura da aplicação e formulário de retirada. |
-| `estilo.css` | Responsável por toda a aparência da aplicação. |
-| `logica.js` | Contém toda a lógica do sistema e funcionamento da assinatura digital. |
-| `manifest.json` | Configuração do Progressive Web App. |
-| `sw.js` | Service Worker utilizado pelo PWA. |
-
----
-
-# Como Executar o Projeto
-
-## Método 1 - Abrindo diretamente
-
-Basta abrir o arquivo `index.html` em qualquer navegador moderno.
-
----
-
-## Método 2 - Visual Studio Code
-
-É recomendado utilizar a extensão **Live Server**.
-
-1. Abra a pasta do projeto no VS Code;
-2. Instale a extensão **Live Server**;
-3. Clique com o botão direito sobre `index.html`;
-4. Selecione **Open with Live Server**.
-
----
-
-# Como Utilizar
-
-## 1. Informar o funcionário
-
-No campo **Nome completo do Funcionário**, digite o nome completo da pessoa que está retirando os equipamentos.
-
-**Exemplo:**
-
-```text
-Matheus Cavalcante Sampaio
+.
+├── index.html              # Interface principal da aplicação
+├── css/
+│   └── estilo.css          # Estilização visual e regras de responsividade
+├── js/
+│   └── logica.js           # Lógica do carrinho, Canvas e comunicação com a API REST
+├── assets/
+│   └── logos/
+│       └── Logo_CPFL_Energia.png  # Identidade visual da CPFL
+├── cpl_icon.ico            # Favicon da aplicação
+└── manifest.json           # Configuração PWA para instalação no dispositivo
 ```
 
 ---
 
-## 2. Selecionar os EPIs
+## ⚙️ Integração com a API Backend
 
-Na lista de equipamentos, selecione um ou mais EPIs.
-
-### Para selecionar vários itens
-
-No Windows:
-
-- mantenha pressionada a tecla **Ctrl**.
-
-No MacOS:
-
-- mantenha pressionada a tecla **Command (⌘)**.
-
-Depois clique sobre cada equipamento desejado.
-
-Caso não encontre o EPI desejado, pode pesquisar na caixa de "Pesquise o EPI" para encontra-lo mais facilmente.
-
----
-
-## 3. Informar a quantidade
-
-Digite a quantidade retirada.
-
-O sistema aceita valores entre **1** e **100**.
-
----
-
-## 4. Realizar a assinatura
-
-Utilize o mouse ou o dedo (em dispositivos móveis) para assinar dentro da área indicada.
-
-Caso deseje apagar a assinatura, pressione o botão:
-
-```text
-Limpar Assinatura
-```
-
----
-
-## 5. Confirmar a retirada
-
-Clique no botão:
-
-```text
-Confirmar Retirada
-```
-
-Após isso o sistema irá:
-
-- Ler todos os dados do formulário;
-- Capturar a assinatura digital;
-- Exibir uma confirmação;
-- Limpar o formulário;
-- Apagar a assinatura.
-
----
-
-# Como Adicionar Novos EPIs
-
-Os equipamentos disponíveis ficam dentro do arquivo `index.html`.
-
-Exemplo:
-
-```html
-<option value="Capacete">Capacete de Segurança</option>
-```
-
-Para adicionar um novo equipamento, basta inserir uma nova linha seguindo o mesmo padrão.
-
-**Exemplo:**
-
-```html
-<option value="Luva">Luva de Proteção</option>
-```
-
-Automaticamente ele aparecerá na lista do formulário.
-
----
-
-# Como Alterar as Cores
-
-Todas as cores da aplicação encontram-se no arquivo:
-
-```text
-estilo.css
-```
-
-Exemplo:
-
-```css
-body{
-    background-color:#c9f9fa;
-}
-```
-
-Alterando esse valor você modifica a cor do fundo da aplicação.
-
-Também podem ser alteradas:
-
-- botões;
-- textos;
-- bordas;
-- formulário;
-- área da assinatura.
-
----
-
-# Como Funciona a Assinatura Digital
-
-A assinatura utiliza a **Canvas API** do HTML5.
-
-Sempre que o usuário desenha sobre o canvas, o JavaScript registra as coordenadas do mouse ou do toque e cria o desenho em tempo real.
-
-Ao confirmar o formulário, a assinatura é convertida para uma imagem utilizando:
+A comunicação com o servidor backend é configurada no arquivo `js/logica.js`:
 
 ```javascript
-canvas.toDataURL();
+// URL base da API REST (Ambiente de Produção / Render)
+const API_URL = "https://api-site-de-confirma-o-de-epi.onrender.com";
 ```
 
-Esse método gera uma imagem em formato Base64, permitindo futuramente armazená-la em banco de dados ou enviá-la para um servidor.
+### Endpoints Consumidos:
+
+| Método | Endpoint | Descrição |
+| :--- | :--- | :--- |
+| `GET` | `/estoque` | Retorna a lista atualizada de EPIs e saldos disponíveis. |
+| `POST` | `/entrega` | Envia os dados do colaborador, lista de EPIs retirados e assinatura em Base64. |
 
 ---
 
-# Funcionamento do Sistema
+## 🛠️ Como Executar Localmente
 
-```text
-Funcionário
+Como se trata de uma aplicação web estática, não é necessária a instalação de dependências de build:
 
-      │
-      ▼
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/MatheusCSampaio/Site-de-Confirma-o-de-EPI.git
+   ```
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd Site-de-Confirma-o-de-EPI
 
-Digita o Nome
-
-      │
-      ▼
-
-Seleciona os EPIs
-
-      │
-      ▼
-
-Informa a Quantidade
-
-      │
-      ▼
-
-Realiza a Assinatura
-
-      │
-      ▼
-
-Confirma a Retirada
-
-      │
-      ▼
-
-JavaScript Processa os Dados
-
-      │
-      ▼
-
-Mensagem de Confirmação
-
-      │
-      ▼
-
-Limpeza do Formulário
-```
+   ```
+3. Abra o arquivo `index.html` em qualquer navegador web ou utilize a extensão **Live Server** no VS Code.
 
 ---
 
-# Personalização
+## 📜 Licença
 
-Caso seja necessário adaptar o sistema para outra empresa, basta alterar:
-
-- Nome da empresa;
-- Lista de EPIs;
-- Cores;
-- Logo (caso exista);
-- Campos do formulário.
-
-Toda a lógica continuará funcionando normalmente.
-
----
-
-# Licença
-
-Este projeto foi desenvolvido exclusivamente para fins de estudo e aprendizado.
-
-Sinta-se livre para utilizá-lo como base para novos projetos, mantendo os devidos créditos ao autor.
-
----
-
-# Desenvolvedor
-
-## MatheusCSampaio
-
-Desenvolvedor de Software.
+Projeto desenvolvido para automação do controle de estoque e entrega de EPIs na **CPFL Energia**.
