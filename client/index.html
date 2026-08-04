@@ -54,6 +54,86 @@
                 <div class="faixa-rodape-azul"></div>
 
             </div>
+
+<!-- PRÉ RESERVA -->
+<div id="modal-reserva" class="modal-reserva">
+
+    <div class="modal-content">
+
+        <div class="cabecalho-reserva">
+
+    <div class="cabecalho-texto">
+
+        <h2>Pré-Reserva de EPIs</h2>
+
+        <p class="texto-ajuda">
+            Minimize a janela para adicionar outros EPIs.
+        </p>
+
+    </div>
+
+    <div class="acoes-cabecalho">
+
+        <img
+            src="assets/logos/Logo_CPFL_Energia.png"
+            alt="Logo CPFL"
+            class
+
+    <img
+        src="assets/logos/Logo_CPFL_Energia.png"
+        alt="Logo CPFL"
+        mizar-reserva">
+    </button>
+
+</div>
+
+</div>
+
+        <div class="topo-modal">
+
+            <button
+                type="button"
+                id="minimizar-reserva">
+                ─
+            </button>
+
+        </div>
+
+        <p>
+            Os itens abaixo estão indisponíveis:
+        </p>
+
+        <div id="equipamento-reserva"></div>
+
+        <label for="email-reserva">
+            E-mail para notificação:
+        </label>
+
+        <input
+            type="email"
+            id="email-reserva"
+            placeholder="nome@cpfl.com.br">
+
+                <div class="botoes-reserva">
+
+            <button
+                type="button"
+                id="confirmar-reserva">
+                Confirmar Pré-Reserva
+            </button>
+
+            <button
+                type="button"
+                id="cancelar-reserva">
+                Cancelar
+            </button>
+
+        </div>
+
+    </div> 
+
+</div> 
+
         <script src="js/logica.js"></script>
         <script>
             if ('serviceWorker' in navigator) {
@@ -61,6 +141,6 @@
                     .then(() => console.log('PWA registrado com sucesso'))
                     .catch(erro => console.log('Erro ao registrar PWA:', erro));
             }
-        </script>   
+        </script> 
     </body>
 </html>

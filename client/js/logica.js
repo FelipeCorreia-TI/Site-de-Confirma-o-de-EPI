@@ -5,6 +5,23 @@ const formulario = document.getElementById("formulario-epi");
 const selectEpi = document.getElementById("Lista-epis");
 const campoBusca = document.getElementById("busca-epi");
 const containerCarrinho = document.getElementById("carrinho-epis");
+const modalReserva =
+    document.getElementById("modal-reserva");
+
+const equipamentoReserva =
+    document.getElementById("equipamento-reserva");
+
+const emailReserva =
+    document.getElementById("email-reserva");
+
+const btnConfirmarReserva =
+    document.getElementById("confirmar-reserva");
+
+const btnCancelarReserva =
+    document.getElementById("cancelar-reserva");
+
+const btnMinimizarReserva =
+    document.getElementById("minimizar-reserva");
 
 // URL da API Node.js no Render
 const API_URL = "https://api-site-de-confirma-o-de-epi.onrender.com";
@@ -15,6 +32,8 @@ let desenhando = false;
 
 // Estado global do carrinho de EPIs
 let carrinho = [];
+
+let itensReserva = [];
 
 // ==========================================
 // LÓGICA DO CANVAS (DESENHO DA ASSINATURA)
@@ -90,7 +109,8 @@ async function carregarEstoque() {
             selectEpi.innerHTML += `
                 <option value="${item.id}" 
                         data-nome="${item.nome}" 
-                        data-limite="${limite}">
+                        data-limite="${limite}"
+                        data-estoque="${estoqueReal}">
                     ${item.nome} (Estoque: ${estoqueReal})
                 </option>
             `;
@@ -107,11 +127,38 @@ async function carregarEstoque() {
 // Adicionar item ao selecionar no dropdown
 selectEpi.addEventListener("change", function() {
     const opcaoSelecionada = selectEpi.options[selectEpi.selectedIndex];
+    const estoque = parseInt(
+        opcaoSelecionada.dataset.estoque || "0",
+        10
+    );
     if (!opcaoSelecionada.value) return;
 
     const id = opcaoSelecionada.value;
     const nome = opcaoSelecionada.dataset.nome || opcaoSelecionada.text;
     const limiteMax = parseInt(opcaoSelecionada.dataset.limite || "1", 10);
+
+if (estoque === 0) {
+
+    const desejaReservar = confirm(
+        `O item "${nome}" está sem estoque.\n\nDeseja fazer uma pré-reserva?`
+    );
+
+    if (desejaReservar) {
+
+        if (!itensReserva.includes(nome)) {
+            itensReserva.push(nome);
+        }
+
+        equipamentoReserva.innerHTML = itensReserva
+            .map(item => `• ${item}`)
+            .join("<br>");
+
+        modalReserva.style.display = "flex";
+    }
+
+    selectEpi.value = "";
+    return;
+}
 
     const itemExistente = carrinho.find(i => i.id === id);
 
@@ -262,3 +309,52 @@ formulario.addEventListener("submit", enviarFormulario);
 
 // Carrega o estoque do backend quando o DOM estiver pronto
 document.addEventListener("DOMContentLoaded", carregarEstoque);
+
+btnConfirmarReserva.addEventListener(
+    "click",
+    function() {
+
+        const email = emailReserva.value;
+
+        if (!email) {
+            alert("Digite um e-mail.");
+            return;
+        }
+
+        alert(
+            `Pré-reserva registrada!\n\nEmail: ${email}\n\nItens:\n${itensReserva.join("\n")}`
+        );
+
+        modalReserva.style.display = "none";
+
+        emailReserva.value = "";
+
+        itensReserva = [];
+
+        equipamentoReserva.innerHTML = "";
+    }
+);
+
+btnCancelarReserva.addEventListener(
+    "click",
+    function() {
+
+        modalReserva.style.display = "none";
+
+        emailReserva.value = "";
+
+        itensReserva = [];
+
+        equipamentoReserva.innerHTML = "";
+
+    }
+);
+
+btnMinimizarReserva.addEventListener(
+    "click",
+    function() {
+
+        modalReserva.style.display = "none";
+
+    }
+);

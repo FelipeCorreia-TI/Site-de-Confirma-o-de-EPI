@@ -215,3 +215,239 @@ button {
     width: auto;
     object-fit: contain;
 }
+
+.modal-reserva {
+
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.6);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.modal-content {
+
+    position: relative;
+
+    background: #f5f5f5;
+
+    width: 95%;
+    max-width: 420px;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.cabecalho-reserva h2 {
+
+    margin: 0;
+
+    color: white;
+}
+
+#equipamento-reserva {
+
+    background: #f4f4f4;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    min-height: 40px;
+}
+
+#minimizar-reserva {
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #d9d9d9;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+#minimizar-reserva:hover {
+
+    background: #bfbfbf;
+}
+
+#email-reserva {
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    box-sizing: border-box;
+}
+
+.botoes-reserva {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+#confirmar-reserva {
+
+    flex: 1;
+
+    background: #005baa;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+#cancelar-reserva {
+
+    flex: 1;
+
+    background: #d9d9d9;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.cabecalho-reserva {
+
+    background: #005baa;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+}
+
+.cabecalho-reserva img {
+
+    height: 45px;
+
+    width: auto;
+}
+
+.logo-reserva {
+
+    height: 45px;
+
+    width: auto;
+}
+
+label[for="email-reserva"] {
+    margin-top: 5px;
+}
+
+.topo-modal {
+
+    position: absolute;
+
+    top: 25px;
+
+    right: 3px;
+
+    z-index: 10;
+}
+
+#minimizar-reserva {
+
+    width: 35px !important;
+    height: 35px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #005baa;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.cabecalho-reserva h2 {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+.texto-ajuda {
+
+    margin: 0;
+
+    color: rgba(255,255,255,0.9);
+
+    font-size: 11px;
+
+    line-height: 1.2;
+}
+
+.cabecalho-texto {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
