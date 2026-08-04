@@ -326,7 +326,37 @@ btnConfirmarReserva.addEventListener(
 
         try {
 
-            // fetch aqui
+            const resposta = await fetch(
+                `${API_URL}/pre-reserva`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email,
+                        itens: itensReserva
+                    })
+                }
+            );
+
+            const resultado = await resposta.json();
+
+            if (!resultado.sucesso) {
+                throw new Error(
+                    resultado.erro || "Erro ao registrar pré-reserva."
+                );
+            }
+
+            alert("Pré-reserva registrada com sucesso!");
+
+            modalReserva.style.display = "none";
+
+            emailReserva.value = "";
+
+            itensReserva = [];
+
+            equipamentoReserva.innerHTML = "";
 
         } catch (erro) {
 
