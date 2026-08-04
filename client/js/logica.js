@@ -321,45 +321,25 @@ btnConfirmarReserva.addEventListener(
             return;
         }
 
+        btnConfirmarReserva.disabled = true;
+        btnConfirmarReserva.innerText = "Processando...";
+
         try {
 
-            const resposta = await fetch(
-                `${API_URL}/pre-reserva`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email,
-                        itens: itensReserva
-                    })
-                }
-            );
-
-            const resultado = await resposta.json();
-
-            if (!resultado.sucesso) {
-                throw new Error(
-                    resultado.erro || "Erro ao registrar pré-reserva."
-                );
-            }
-
-            alert("Pré-reserva registrada com sucesso!");
-
-            modalReserva.style.display = "none";
-
-            emailReserva.value = "";
-
-            itensReserva = [];
-
-            equipamentoReserva.innerHTML = "";
+            // fetch aqui
 
         } catch (erro) {
 
             console.error(erro);
 
             alert("Erro ao enviar pré-reserva.");
+
+        } finally {
+
+            btnConfirmarReserva.disabled = false;
+
+            btnConfirmarReserva.innerText =
+                "Confirmar Pré-Reserva";
         }
     }
 );
