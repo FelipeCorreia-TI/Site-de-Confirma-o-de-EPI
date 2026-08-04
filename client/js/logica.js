@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", carregarEstoque);
 
 btnConfirmarReserva.addEventListener(
     "click",
-    function() {
+    async function() {
 
         const email = emailReserva.value;
 
@@ -321,17 +321,46 @@ btnConfirmarReserva.addEventListener(
             return;
         }
 
-        alert(
-            `Pré-reserva registrada!\n\nEmail: ${email}\n\nItens:\n${itensReserva.join("\n")}`
-        );
+        try {
 
-        modalReserva.style.display = "none";
+            const resposta = await fetch(
+                `${API_URL}/pre-reserva`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email,
+                        itens: itensReserva
+                    })
+                }
+            );
 
-        emailReserva.value = "";
+            const resultado = await resposta.json();
 
-        itensReserva = [];
+            if (!resultado.sucesso) {
+                throw new Error(
+                    resultado.erro || "Erro ao registrar pré-reserva."
+                );
+            }
 
-        equipamentoReserva.innerHTML = "";
+            alert("Pré-reserva registrada com sucesso!");
+
+            modalReserva.style.display = "none";
+
+            emailReserva.value = "";
+
+            itensReserva = [];
+
+            equipamentoReserva.innerHTML = "";
+
+        } catch (erro) {
+
+            console.error(erro);
+
+            alert("Erro ao enviar pré-reserva.");
+        }
     }
 );
 
