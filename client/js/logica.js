@@ -86,12 +86,72 @@ botãoLimpar.addEventListener("click", limparTela);
 // CARREGAR ESTOQUE DO BACK-END / FIREBASE
 // ==========================================
 
+function preencherSelect(inventario) {
+
+    inventario.sort((a, b) => {
+        const nomeA = a.nome || "";
+        const nomeB = b.nome || "";
+
+        return nomeA.localeCompare(
+            nomeB,
+            "pt-BR",
+            { sensitivity: "base" }
+        );
+    });
+
+    selectEpi.innerHTML =
+        '<option value="">Selecione um EPI para adicionar...</option>';
+
+    inventario.forEach(item => {
+
+        const estoqueReal =
+            item.quantidade ??
+            item["quantidade "] ??
+            item.quantidadeEstoque ??
+            0;
+
+        const limite =
+            item.quantidadePadrao ??
+            item["quantidadePadrao "] ??
+            estoqueReal;
+
+        selectEpi.innerHTML += `
+            <option
+                value="${item.id}"
+                data-nome="${item.nome}"
+                data-limite="${limite}"
+                data-estoque="${estoqueReal}">
+                ${item.nome} (Estoque: ${estoqueReal})
+            </option>
+        `;
+    });
+}
+
 async function carregarEstoque() {
     try {
+
+        const estoqueCache =
+            localStorage.getItem("estoque");
+
+        if (estoqueCache) {
+
+    console.log("Carregando estoque do cache");
+
+    const inventario =
+        JSON.parse(estoqueCache);
+
+        preencherSelect(inventario);
+
+    }
+
         const resposta = await fetch(`${API_URL}/estoque`);
         if (!resposta.ok) throw new Error("Erro ao carregar estoque.");
 
         const inventario = await resposta.json();
+        localStorage.setItem(
+            "estoque",
+            JSON.stringify(inventario)
+        );
 
         // ORDENAÇÃO ALFABÉTICA (A - Z):
         inventario.sort((a, b) => {
