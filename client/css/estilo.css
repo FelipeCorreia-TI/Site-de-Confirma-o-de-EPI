@@ -451,3 +451,18 @@ label[for="email-reserva"] {
 
     gap: 4px;
 }
+
+.rodape-direitos {
+
+    text-align: center;
+
+    font-size: 16px;
+
+    color: #fcfcfc;
+
+    padding: 10px;
+
+    margin-top: 15px;
+
+    line-height: 1.4;
+}
